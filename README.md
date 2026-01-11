@@ -1,37 +1,56 @@
-Aletheia-Net: Misinformation Detection System
+🛡️ Aletheia-Net
 
-Aletheia-Net is a machine learning application designed to assess the credibility of news articles using Natural Language Processing (NLP). It utilizes a multi-model architecture to classify text veracity and generate abstractive summaries.
+Automated Credibility Assessment System
 
-System Architecture
+🔗 Live Demo
 
-The application implements a stacked pipeline approach:
+Click Here to Launch Aletheia-Net
 
-Credibility Classification: A DistilBERT model fine-tuned on the WELFake dataset detects semantic patterns associated with misinformation.
+📖 Project Overview
 
-Abstractive Summarization: A BART (Bidirectional and Auto-Regressive Transformers) model extracts core information to provide a neutral summary.
+Aletheia-Net is a hybrid AI application designed to assess the credibility of news articles. Unlike simple binary "True/False" detectors, this system employs a Multi-Layered Assessment Engine to evaluate linguistic patterns, identifying whether content is factual news, clickbait, or speculative opinion.
 
-Technical Stack
+⚙️ System Architecture
 
-Language: Python 3.9+
+The application implements a 3-layer verification pipeline:
 
-Framework: Streamlit
+Semantic Intent Analysis:
 
-ML Libraries: Transformers (Hugging Face), PyTorch
+Utilizes a Zero-Shot Transformer (valhalla/distilbart-mnli-12-1) to classify text intent (e.g., Factual vs. Clickbait) without relying on outdated static datasets.
 
-Installation
+Logic Guardrails (Rule Engine):
 
-Clone the repository.
+A deterministic logic layer that scans for anomalies, such as future dates (e.g., "IPL 2026"), to prevent the AI from hallucinating on speculative content.
+
+Abstractive Summarization:
+
+A BART Transformer (facebook/bart-large-cnn) generates a neutral, concise executive summary, stripping away emotional rhetoric.
+
+🛠️ Technical Stack
+
+Frontend: Streamlit
+
+AI Models: Hugging Face Transformers
+
+Logic: Python Regex & Datetime
+
+📦 Installation
+
+Clone the repository:
+
+git clone [https://github.com/NitheeshB-33/aletheia-net.git](https://github.com/NitheeshB-33/aletheia-net.git)
+
 
 Install dependencies:
 
 pip install -r requirements.txt
 
 
-Launch the application:
+Run the app:
 
 streamlit run app.py
 
 
-License
+📄 License
 
 MIT License
