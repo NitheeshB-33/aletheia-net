@@ -47,22 +47,25 @@ if st.button("Analyze Text", type="primary"):
             result = classifier(input_text[:512])[0]
             label = result['label']
             score = result['score']
-            
-            # --- FINAL LOGIC FIX ---
-            # LABEL_0 is usually the "Fake" class in this specific dataset
-            is_fake = label == "LABEL_0" 
+
+            # --- FIXED LOGIC ---
+            # LABEL_0 = REAL, LABEL_1 = FAKE
+            label_map = {"LABEL_0": "REAL", "LABEL_1": "FAKE"}
+            mapped_label = label_map.get(label, "UNKNOWN")
+
+            is_fake = mapped_label == "FAKE"
             confidence_pct = round(score * 100, 2)
-            
+
             st.divider()
-            
+
             col1, col2 = st.columns(2)
-            
+
             with col1:
                 if is_fake:
-                    st.error(f"STATUS: UNVERIFIED")
+                    st.error("STATUS: UNVERIFIED")
                     st.metric("Risk Score", f"{confidence_pct}%", delta="High Risk", delta_color="inverse")
                 else:
-                    st.success(f"STATUS: VERIFIED")
+                    st.success("STATUS: VERIFIED")
                     st.metric("Credibility Score", f"{confidence_pct}%", delta="High Confidence")
 
             with col2:
@@ -78,6 +81,6 @@ if st.button("Analyze Text", type="primary"):
                 summary_result = summarizer(input_text, max_length=60, min_length=30, do_sample=False)
                 summary_text = summary_result[0]['summary_text']
                 st.info(summary_text)
-                
+
         except Exception as e:
             st.error(f"Processing Error: {e}")
