@@ -48,10 +48,9 @@ if st.button("Analyze Text", type="primary"):
             label = result['label']
             score = result['score']
             
-            # --- LOGIC CORRECTION ---
-            # LABEL_1 = Fake News
-            # LABEL_0 = Real News
-            is_fake = label == "LABEL_1" 
+            # --- FINAL LOGIC FIX ---
+            # LABEL_0 is usually the "Fake" class in this specific dataset
+            is_fake = label == "LABEL_0" 
             confidence_pct = round(score * 100, 2)
             
             st.divider()
