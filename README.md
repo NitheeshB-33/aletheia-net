@@ -5,6 +5,7 @@ Automated Credibility Assessment System
 🔗 Live Demo
 
 Click Here to Launch Aletheia-Net
+https://aletheia-net-eds9tok2e7qey7iobtniv7.streamlit.app/
 
 📖 Project Overview
 
