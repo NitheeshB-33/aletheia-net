@@ -48,8 +48,10 @@ if st.button("Analyze Text", type="primary"):
             label = result['label']
             score = result['score']
             
-            # Map labels (Model specific: LABEL_0 = Fake, LABEL_1 = Real)
-            is_fake = label == "LABEL_0"
+            # --- LOGIC CORRECTION ---
+            # LABEL_1 = Fake News
+            # LABEL_0 = Real News
+            is_fake = label == "LABEL_1" 
             confidence_pct = round(score * 100, 2)
             
             st.divider()
